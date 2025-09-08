@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:latom/features/home_old.dart';
+import 'package:latom/ui/pages/home.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   // This widget is the root of your application.
   @override
@@ -12,9 +12,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
       home: const HomePage( title: 'LATOMM'),
-      //routes: <String, WidgetBuilder>{
-      //  '/guess_anime':
-      //}
     );
   }
 }

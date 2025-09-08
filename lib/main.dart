@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:latom/features/home.dart';
+import 'package:latom/app.dart';
 
 void main() {
-  runApp(const NavigatorPopHandlerApp());
+  runApp(const App());
 }
 
