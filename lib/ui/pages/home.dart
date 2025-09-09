@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              child: const Text('ANIME'),
+              child: const Text('FIND ANIME BY ID'),
               onPressed: (){
                 Navigator.push(
                   context,
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
               }
             ),
             ElevatedButton(
-              child: const Text('PESQUISA ANIME'),
+              child: const Text('FIND ANIME BY NAME'),
               onPressed: (){
                 Navigator.push(
                   context,
