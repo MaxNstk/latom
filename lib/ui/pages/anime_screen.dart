@@ -47,6 +47,9 @@ class AnimeSearchFormState extends State<AnimeSearchForm> {
                         if (value == null || value.isEmpty)  {
                           return 'Please enter some text';
                         }
+                        if (int.tryParse(value) == null){
+                          return 'Not a Number';
+                        }
                         return null;
                       },
                     ),

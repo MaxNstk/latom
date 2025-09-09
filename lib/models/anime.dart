@@ -36,4 +36,14 @@ class Anime {
       , webpImage: webpImage
     );
   }
+
+  static Iterable<Anime> fromJsonList(List<dynamic> jsonList)  {
+    final List<Anime> animeList = jsonList.map((item) => Anime.fromJson(item)).toList();
+    return animeList;                                      
+  }
+
+  @override
+  String toString() {
+    return '$id - $englishTitle | $japaneseTitle. ($score)';
+  }
 }

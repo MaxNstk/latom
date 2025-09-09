@@ -13,10 +13,36 @@ class AnimeService {
   }
 
   Future<Anime?> getAnimeById(int id) async {
-    LtHttpResponse res = await client.get('v4/anime/$id');
+    LtHttpResponse res = await client.get(endpoint:'v4/anime/$id');
     if (res.statusCode != 200){
       return null;
     }
     return Anime.fromJson(res.content["data"]);
   }
+
+  Future<Iterable<Anime>> fetchAnimes(String? englishTitle) async {
+    String page = '1';
+    String limit = '5';
+    String minScore = '6';
+
+    if (englishTitle == null || englishTitle.isEmpty){
+      return Iterable<Anime>.empty();
+    }
+    final Map<String, dynamic> queryParams = {
+      'q':englishTitle
+      ,'page':page
+      ,'limit':limit
+      ,'min_score':minScore
+    };
+
+    LtHttpResponse res = await client.get(
+       endpoint:'v4/anime'
+      ,queryParams:queryParams
+    );
+    if (res.statusCode != 200){
+      return Iterable<Anime>.empty();
+    } 
+    return Anime.fromJsonList(res.content['data']);
+  }
+  
 }
