@@ -69,7 +69,10 @@ class AnimeSearchFormState extends State<AnimeSearchForm> {
               ),
               SizedBox(height: 32,),
               if (_submittedAnimeId != null)
-                AnimeDetailWidget(animeId: _submittedAnimeId!) 
+                AnimeDetailWidget(
+                  key: ValueKey(_submittedAnimeId),
+                  animeId: _submittedAnimeId!,
+                ),
             ],
           ),
         ),

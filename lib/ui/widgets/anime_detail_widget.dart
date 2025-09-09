@@ -10,7 +10,7 @@ class AnimeDetailWidget extends StatelessWidget {
   const AnimeDetailWidget({super.key, required this.animeId});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
     return ChangeNotifierProvider<AnimeViewModel>(
       create: (_) {
         final viewModel = AnimeViewModel();
