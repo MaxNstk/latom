@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:latom/core/utils/debounceable.dart';
 import 'package:latom/models/anime.dart';
 import 'package:latom/services/anime_service.dart';
+import 'package:latom/ui/widgets/anime_detail_card.dart';
 import 'package:latom/ui/widgets/anime_detail_widget.dart';
 import 'package:latom/ui/widgets/lt_scaffold.dart';
 
@@ -72,10 +73,7 @@ class _SearchAnimeScreenState extends State<SearchAnimeScreen> {
           ),
           SizedBox(height: 32,),
           if (_selectedAnime != null)
-            AnimeDetailWidget(
-              key: ValueKey(_selectedAnime!.id),
-              animeId: _selectedAnime!.id,
-            )
+            AnimeDetailCard(anime: _selectedAnime!)
           ],
         ),
       )),

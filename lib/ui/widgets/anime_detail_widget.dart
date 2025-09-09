@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latom/ui/widgets/anime_detail_card.dart';
 import 'package:latom/viewmodels/anime_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -32,25 +33,7 @@ class AnimeDetailWidget extends StatelessWidget {
               )
             );
           }
-    
-          final anime = vm.anime!;
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 Text('id: ${anime.id}')
-                ,SizedBox(height: 10)
-                ,Text('englishTitle: ${anime.englishTitle}')
-                ,SizedBox(height: 10)
-                ,Text('japaneseTitle: ${anime.japaneseTitle}')
-                ,SizedBox(height: 10)
-                ,Text('score: ${anime.score}')
-                ,SizedBox(height: 10)
-                ,Image.network(anime.webpImage)
-              ],
-            ),
-          );
+          return AnimeDetailCard(anime: vm.anime!);
         },
       ),
     );
