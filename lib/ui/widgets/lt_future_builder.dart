@@ -1,37 +1,43 @@
 import 'package:flutter/material.dart';
 
-class LtFutureBuilder extends StatelessWidget {
+class LtFutureBuilder<T> extends StatelessWidget {
   
-  final Future future;
-  final Function builder; 
+  final Future<T?> future;
+  final Widget Function(T data) builder; 
+  final String nullResponseMsg;
   
-  const LtFutureBuilder({super.key, required this.future, required this.builder});
+  const LtFutureBuilder({super.key, required this.future, required this.builder, required this.nullResponseMsg});
 
   @override
   Widget build(BuildContext context) {
 
-    return FutureBuilder(
+    return FutureBuilder<T?>(
       future: future, 
-      builder: (context, snapshot){
+      builder: (context, AsyncSnapshot<T?> snapshot){
         List<Widget> children;
-        if (snapshot.hasData){
-          children = snapshot.data == null ?
-            [const Text("Error while retrieving data")] :
-            [builder(snapshot.data)];
+        if (snapshot.connectionState == ConnectionState.waiting){
+          children = [
+            SizedBox(width:30, height: 30, child: CircularProgressIndicator())
+          , Padding(padding: EdgeInsets.only(top: 12), child: Text("Loading..."),)
+          ];
         }
         else if (snapshot.hasError){
           children = [
             const Icon(Icons.error_outline, color: Colors.red, size: 30),
             Padding(
               padding: const EdgeInsets.only(top: 12),
-              child: Text('Error retrieving anime info: ${snapshot.error}')
+              child: Text('Error retrieving info: ${snapshot.error}')
             )
           ];
-        }else{
+        }else if (snapshot.connectionState == ConnectionState.done) {
           children = [
-            SizedBox(width:30, height: 30, child: CircularProgressIndicator())
-          , Padding(padding: EdgeInsets.only(top: 12), child: Text("Loading..."),)
+            snapshot.data != null ?
+              builder(snapshot.data!) :
+              Center(child: Text(nullResponseMsg)) 
           ];          
+        }
+        else {
+          children = [Text("Error while fetching data: state: ${snapshot.connectionState}; data: ${snapshot.data}")];
         }
         return Center(
           child: Column(

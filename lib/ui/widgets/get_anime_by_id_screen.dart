@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:latom/models/anime.dart';
 import 'package:latom/services/anime_service.dart';
 import 'package:latom/ui/widgets/anime_detail_card.dart';
 import 'package:latom/ui/widgets/lt_future_builder.dart';
@@ -12,9 +13,10 @@ class GetAnimeByIdScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LtFutureBuilder(
-      builder: (anime) => AnimeDetailCard(anime: anime!),
-      future: AnimeService().getAnimeById(animeId)
+    return LtFutureBuilder<Anime>(
+      builder: (Anime anime) => AnimeDetailCard(anime: anime),
+      future: AnimeService().getAnimeById(animeId),
+      nullResponseMsg: 'Anime not found',
     );
   }
 }
