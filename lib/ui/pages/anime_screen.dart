@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latom/ui/widgets/get_anime_by_id_screen.dart';
+import 'package:latom/ui/pages/get_anime_by_id_screen.dart';
 import 'package:latom/ui/widgets/lt_scaffold.dart';
 
 

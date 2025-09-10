@@ -1,5 +1,3 @@
-
-
 import 'package:latom/core/network/client.dart';
 import 'package:latom/core/network/response.dart';
 import 'package:latom/models/anime.dart';
@@ -39,6 +37,24 @@ class AnimeService {
        endpoint:'v4/anime'
       ,queryParams:queryParams
     );
+    if (res.statusCode != 200){
+      return Iterable<Anime>.empty();
+    } 
+    return Anime.fromJsonList(res.content['data']);
+  }
+
+  Future<Iterable<Anime>> fetchTopAnimes({required int page, int limit = 10}) async {
+    
+    final Map<String, dynamic> queryParams = {
+      'limit': limit.toString()
+      ,'page': page.toString()
+    };
+
+    LtHttpResponse res = await client.get(
+       endpoint:'v4/top/anime'
+      ,queryParams:queryParams
+    );
+
     if (res.statusCode != 200){
       return Iterable<Anime>.empty();
     } 

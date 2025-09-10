@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:latom/ui/pages/anime_screen.dart';
 import 'package:latom/ui/pages/search_anime_screen.dart';
+import 'package:latom/ui/pages/top_anime_screen.dart';
 import 'package:latom/ui/widgets/lt_scaffold.dart';
 
 
@@ -53,7 +54,17 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             ),
-            
+            ElevatedButton(
+              child: const Text('LIST TOP ANIMES'),
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (context) => TopAnimeScreen(),
+                  )
+                );
+              }
+            ),
             const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
