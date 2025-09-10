@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latom/ui/widgets/anime_detail_widget.dart';
+import 'package:latom/ui/widgets/get_anime_by_id_screen.dart';
 import 'package:latom/ui/widgets/lt_scaffold.dart';
 
 
@@ -72,7 +72,7 @@ class AnimeSearchFormState extends State<AnimeSearchForm> {
               ),
               SizedBox(height: 32,),
               if (_submittedAnimeId != null)
-                AnimeDetailWidget(
+                GetAnimeByIdScreen(
                   key: ValueKey(_submittedAnimeId),
                   animeId: _submittedAnimeId!,
                 ),
