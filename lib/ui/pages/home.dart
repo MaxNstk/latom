@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:latom/ui/pages/anime_screen.dart';
+import 'package:latom/ui/pages/anime_by_id_screen.dart';
 import 'package:latom/ui/pages/search_anime_screen.dart';
 import 'package:latom/ui/pages/top_anime_screen.dart';
 import 'package:latom/ui/widgets/lt_scaffold.dart';
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (context) => AnimeSearchForm(),
+                    builder: (context) => AnimeByIdScreen(),
                   )
                 );
               }

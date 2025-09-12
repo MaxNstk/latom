@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:latom/ui/pages/get_anime_by_id_screen.dart';
+import 'package:latom/models/anime.dart';
+import 'package:latom/services/anime_service.dart';
+import 'package:latom/ui/widgets/anime_detail_card.dart';
+import 'package:latom/ui/widgets/lt_future_builder.dart';
 import 'package:latom/ui/widgets/lt_scaffold.dart';
 
 
-class AnimeSearchForm extends StatefulWidget {
-  const AnimeSearchForm({super.key});
+class AnimeByIdScreen extends StatefulWidget {
+  const AnimeByIdScreen({super.key});
 
   @override
-  AnimeSearchFormState createState() {
-    return AnimeSearchFormState();
+  AnimeByIdScreenState createState() {
+    return AnimeByIdScreenState();
   }
 }
 
-class AnimeSearchFormState extends State<AnimeSearchForm> {
+class AnimeByIdScreenState extends State<AnimeByIdScreen> {
 
   final _formKey = GlobalKey<FormState>();
   final _controller = TextEditingController();
@@ -72,10 +75,11 @@ class AnimeSearchFormState extends State<AnimeSearchForm> {
               ),
               SizedBox(height: 32,),
               if (_submittedAnimeId != null)
-                GetAnimeByIdScreen(
-                  key: ValueKey(_submittedAnimeId),
-                  animeId: _submittedAnimeId!,
-                ),
+                LtFutureBuilder<Anime>(
+                  builder: (Anime anime) => AnimeDetailCard(anime: anime),
+                  future: AnimeService().getAnimeById(_submittedAnimeId!),
+                  nullResponseMsg: 'Anime not found',
+                )
             ],
           ),
         ),
