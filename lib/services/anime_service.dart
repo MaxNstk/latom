@@ -100,7 +100,7 @@ class AnimeService {
     Random random = Random();
 
     while (res.content['data'].length > 0){
-      int idx = random.nextInt(res.content['data'].length) - 1;
+      int idx = random.nextInt(res.content['data'].length);
       String img = res.content['data'][idx]['webp']['image_url'];
       if (img != ''){
         return img;

@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:latom/models/character.dart';
 import 'package:latom/ui/widgets/character_search_widget.dart';

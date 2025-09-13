@@ -1,12 +1,14 @@
 
 
+import 'dart:math';
+
 class Anime {
   
   int id;
   String englishTitle;
   String japaneseTitle;
   double score;
-  String webpImage;
+  List<String> imageList = [];
 
 
   Anime({
@@ -14,17 +16,17 @@ class Anime {
   , required this.englishTitle
   , required this.japaneseTitle
   , required this.score
-  , required this.webpImage
   });
 
   factory Anime.fromJson(Map<String, dynamic> json){
-    return Anime(
+    Anime anime =  Anime(
         id: json['mal_id'] 
       , englishTitle: json['title'] 
       , japaneseTitle: json['title_japanese'] 
       , score: json['score'] 
-      , webpImage: json['images']["webp"]["image_url"]
     );
+    anime.imageList.add(json['images']["webp"]["image_url"]);
+    return anime;
   }
 
   static Iterable<Anime> fromJsonList(List<dynamic> jsonList)  {
@@ -36,4 +38,9 @@ class Anime {
   String toString() {
     return '$id - $englishTitle | $japaneseTitle. ($score)';
   }
+
+  String getRandomImage(){
+    return imageList[Random().nextInt(imageList.length)];
+  }
+
 }
