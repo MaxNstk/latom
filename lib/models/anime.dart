@@ -27,16 +27,6 @@ class Anime {
     );
   }
 
-  Anime toEntity(){
-    return Anime(
-        id: id
-      , englishTitle: englishTitle
-      , japaneseTitle: japaneseTitle
-      , score: score
-      , webpImage: webpImage
-    );
-  }
-
   static Iterable<Anime> fromJsonList(List<dynamic> jsonList)  {
     final List<Anime> animeList = jsonList.map((item) => Anime.fromJson(item)).toList();
     return animeList;                                      

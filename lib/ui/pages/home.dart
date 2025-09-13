@@ -68,6 +68,18 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             ),
+            SizedBox(height: 32,),
+            ElevatedButton(
+              child: const Text('FIND CHARACTER BY NAME'),
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (context) => SearchAnimeScreen(),
+                  )
+                );
+              }
+            ),
           ],
         ),
       )
