@@ -42,6 +42,27 @@ class _AnimeSearchWidgetState extends State<AnimeSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return Autocomplete<Anime>(
+      optionsViewBuilder: (context, onSelected, options) {
+        return Align(
+          alignment: Alignment.topLeft,
+          child: Material(
+            elevation: 4.0,
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              itemCount: options.length,
+              itemBuilder: (context, index) {
+                final Anime anime = options.elementAt(index);
+                return ListTile(
+                  title: Text(anime.englishTitle),
+                  leading: Image.network(anime.webpImage, width: 40, height: 40, errorBuilder: (_, __, ___) => Icon(Icons.image_not_supported)),
+                  onTap: () => onSelected(anime),
+                );
+              },
+            ),
+          ),
+        );
+      },
       optionsBuilder: (TextEditingValue textEditingValue) async {
         final Iterable<Anime>? options = await _deboucedSearch(textEditingValue.text);
         if (options!.isEmpty){ 
