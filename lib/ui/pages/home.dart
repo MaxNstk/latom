@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:latom/ui/pages/anime_by_id_screen.dart';
 import 'package:latom/ui/pages/guess_anime_screen.dart';
@@ -17,14 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return LtScaffold(
@@ -77,19 +68,9 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             ),
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      )
     );
   }
 }
