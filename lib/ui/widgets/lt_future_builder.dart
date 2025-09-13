@@ -14,37 +14,40 @@ class LtFutureBuilder<T> extends StatelessWidget {
     return FutureBuilder<T?>(
       future: future, 
       builder: (context, AsyncSnapshot<T?> snapshot){
-        List<Widget> children;
-        if (snapshot.connectionState == ConnectionState.waiting){
-          children = [
-            SizedBox(width:30, height: 30, child: CircularProgressIndicator())
-          , Padding(padding: EdgeInsets.only(top: 12), child: Text("Loading..."),)
-          ];
+        if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.data == null){
+              return Center(child: Text(nullResponseMsg)); 
+            }
+          // BUILD THE LAYOUT
+          return builder(snapshot.data!);
         }
-        else if (snapshot.hasError){
-          children = [
-            const Icon(Icons.error_outline, color: Colors.red, size: 30),
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: Text('Error retrieving info: ${snapshot.error}')
+        if (snapshot.connectionState == ConnectionState.waiting){
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width:30, height: 30, child: CircularProgressIndicator()),
+                Padding(padding: EdgeInsets.only(top: 12), child: Text("Loading..."),),
+              ],
             )
-          ];
-        }else if (snapshot.connectionState == ConnectionState.done) {
-          children = [
-            snapshot.data != null ?
-              builder(snapshot.data!) :
-              Center(child: Text(nullResponseMsg)) 
-          ];          
+          );
+        }
+        if (snapshot.hasError){
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, color: Colors.red, size: 30),
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Text('Error retrieving info: ${snapshot.error}')
+              )
+            ]
+          );
         }
         else {
-          children = [Text("Error while fetching data: state: ${snapshot.connectionState}; data: ${snapshot.data}")];
+          return Text("Error while fetching data: state: ${snapshot.connectionState}; data: ${snapshot.data}");
         }
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: children,
-          )
-        );
+        
       }
     );
   }

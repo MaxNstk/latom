@@ -80,11 +80,11 @@ class AnimeService {
         endpoint:'v4/top/anime'
         ,queryParams:queryParams
       );
-      if (res.statusCode != 200){
+      if (res.statusCode == 200){
         result = Anime.fromJson(res.content['data'][0]);
       }
     }
-    return result!;
+    return result;
   }
 
   Future<String> getAnimeRandomWebpImage(Anime anime) async {
@@ -96,6 +96,18 @@ class AnimeService {
       return '';
     }
     return res.content['data'][Random().nextInt(res.content['data'].length)]['webp']['image_url'];
+  }
+
+  Future<Map<Anime, String>> getRandomAnimesAndImages({required int animeCount, int dificulty = 1 }) async {
+    
+    Map<Anime, String> animesMap = {};
+
+    for (int i = 0; i < animeCount; i++){
+      Anime curAnime = await getRandomAnime(200);
+      String curAnimeImg = await getAnimeRandomWebpImage(curAnime);
+      animesMap.addAll({curAnime:curAnimeImg});
+    }
+    return animesMap;
   }
 
 }
