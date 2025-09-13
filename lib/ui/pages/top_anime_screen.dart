@@ -76,7 +76,16 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
               )
             ) ;
           }
-          return AnimeDetailCard(anime: _items[index]);
+          return Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(child: AnimeDetailCard(anime: _items[index])),
+                ],
+              ),
+              SizedBox(height: 8, width: 8,)
+            ],
+          );
         }
       )
     );
