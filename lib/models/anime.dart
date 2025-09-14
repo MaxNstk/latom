@@ -22,10 +22,10 @@ class Anime {
     Anime anime =  Anime(
         id: json['mal_id'] 
       , englishTitle: json['title'] 
-      , japaneseTitle: json['title_japanese'] 
+      , japaneseTitle: json.containsKey('title_japanese')? json['title_japanese'] : ''
       , score: json['score'] 
     );
-    anime.imageList.add(json['images']["webp"]["image_url"]);
+    anime.imageList.add(json['images']?["webp"]?["image_url"]);
     return anime;
   }
 

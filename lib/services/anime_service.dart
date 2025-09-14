@@ -67,11 +67,12 @@ class AnimeService {
 
     Random random = Random();
     Anime? result;
+    int limit = 1;
 
     while (result == null){
       int animeTopPosition = random.nextInt(200);
       final Map<String, dynamic> queryParams = {
-        'limit': 1.toString()
+        'limit': limit.toString()
         ,'page': animeTopPosition.toString()
       };
 
