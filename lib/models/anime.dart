@@ -23,9 +23,10 @@ class Anime {
         id: json['mal_id'] 
       , englishTitle: json['title'] 
       , japaneseTitle: json.containsKey('title_japanese')? json['title_japanese'] : ''
-      , score: json['score'] 
+      , score: json.containsKey('score')? json['score'] : 0 
     );
-    anime.imageList.add(json['images']?["webp"]?["image_url"]);
+
+    anime.imageList.add((json['images'].containsKey('webp')? json['images']['webp']: json['images']['jpg'])?["image_url"]);
     return anime;
   }
 

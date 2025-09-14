@@ -96,7 +96,7 @@ class AnimeService {
     }
     final animeData = res.content['data'];
     List<String> imgList = animeData
-      .map((img) => img['webp']['image_url'] as String)
+      .map((img) => (img.containsKey('webp')? img['webp']: img['jpg'])['image_url'] as String)
       .whereType<String>()
       .toList();
     anime.addImages(imgList);

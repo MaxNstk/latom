@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latom/models/character.dart';
+import 'package:latom/ui/pages/character_detail_card.dart';
 import 'package:latom/ui/widgets/character_search_widget.dart';
 import 'package:latom/ui/widgets/lt_scaffold.dart';
 
@@ -28,8 +29,7 @@ class _SearchCharacterScreenState extends State<SearchCharacterScreen> {
           ),
           SizedBox(height: 32,),
           if (_selectedCharacter != null)
-            Text(_selectedCharacter!.name)
-            //CharacterDetailCard(anime: _selectedCharacter!)
+            Expanded(child: CharacterDetailCard(character: _selectedCharacter!))
         ],
       ),
     );

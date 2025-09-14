@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:latom/ui/pages/home.dart';
+import 'package:latom/ui/pages/home_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: const HomePage( title: 'LATOMM'),
+      home: const HomePage( title: 'LATOM'),
     );
   }
 }

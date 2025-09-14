@@ -38,9 +38,9 @@ class _GuessAnimeScreenState extends State<GuessAnimeScreen> {
       body: LtFutureBuilder(
         nullResponseMsg: 'Not Found',
         future: animeService.getRandomAnimes(animeCount: 3),
-        builder: (List<Anime> animeList) {
+        builder: (List<Anime>? animeList) {
           return ListView.builder(
-            itemCount: animeList.length,
+            itemCount: animeList!.length,
             itemBuilder: (context, index) {
               final anime = animeList[index];
               return Padding(

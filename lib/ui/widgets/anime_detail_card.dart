@@ -23,7 +23,7 @@ class AnimeDetailCard extends StatelessWidget {
             ,SizedBox(height: 10)
             ,Text('score: ${anime.score}')
             ,SizedBox(height: 10)
-            ,Image.network(anime.getRandomImage())
+            ,Image.network(anime.getRandomImage(),)
           ],
         ),
       ),

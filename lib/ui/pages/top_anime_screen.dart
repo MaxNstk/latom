@@ -74,7 +74,7 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
                   Padding(padding: EdgeInsets.only(top: 12), child: Text("Loading..."),)
                 ]
               )
-            ) ;
+            );
           }
           return Column(
             children: [

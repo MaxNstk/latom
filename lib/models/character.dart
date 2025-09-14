@@ -1,5 +1,7 @@
 
 
+import 'dart:math';
+
 import 'package:latom/models/anime.dart';
 
 class Character {
@@ -40,6 +42,10 @@ class Character {
 
   void addImages(List<String> images) {
     imagesUrls.addAll(images);
+  }
+ 
+  String getRandomImage(){
+    return imagesUrls[Random().nextInt(imagesUrls.length)];
   }
 
 }

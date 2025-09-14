@@ -76,7 +76,7 @@ class AnimeByIdScreenState extends State<AnimeByIdScreen> {
               SizedBox(height: 32,),
               if (_submittedAnimeId != null)
                 LtFutureBuilder<Anime>(
-                  builder: (Anime anime) => AnimeDetailCard(anime: anime),
+                  builder: (Anime? anime) => AnimeDetailCard(anime: anime!),
                   future: AnimeService().getAnimeById(_submittedAnimeId!),
                   nullResponseMsg: 'Anime not found',
                 )

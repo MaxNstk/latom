@@ -47,7 +47,7 @@ class CharacterService {
     }
     final data = res.content['data'];
     List<String> imgList = data
-      .map((img) => img['webp']['image_url'] as String)
+      .map((img) => (img.containsKey('webp')? img['webp']: img['jpg'])['image_url'] as String)
       .whereType<String>()
       .toList();
     character.addImages(imgList);
@@ -63,6 +63,7 @@ class CharacterService {
     final animes = res.content['data'];
     List<Anime> animeList = animes
       .map((anime) => Anime.fromJson(anime['anime']))
+      .whereType<Anime>()
       .toList();
     character.addAnimes(animeList);
   }

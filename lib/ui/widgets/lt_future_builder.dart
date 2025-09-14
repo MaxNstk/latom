@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LtFutureBuilder<T> extends StatelessWidget {
   
   final Future<T?> future;
-  final Widget Function(T data) builder; 
+  final Widget Function(T? data) builder; 
   final String nullResponseMsg;
   
   const LtFutureBuilder({super.key, required this.future, required this.builder, required this.nullResponseMsg});
