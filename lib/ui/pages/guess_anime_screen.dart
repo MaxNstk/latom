@@ -37,20 +37,19 @@ class _GuessAnimeScreenState extends State<GuessAnimeScreen> {
       title: 'GUESS THE ANIME',
       body: LtFutureBuilder(
         nullResponseMsg: 'Not Found',
-        future: animeService.getRandomAnimesAndImages(animeCount: 3),
-        builder: (Map<Anime, String>? animesData) {
-          final animeList = animesData!.entries.toList();
+        future: animeService.getRandomAnimes(animeCount: 3),
+        builder: (List<Anime> animeList) {
           return ListView.builder(
             itemCount: animeList.length,
             itemBuilder: (context, index) {
-              final entry = animeList[index];
+              final anime = animeList[index];
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    AnimeSearchWidget(onSelect: (Anime selectedAnime) => _onSelect(entry.key, selectedAnime)),
-                    Text(entry.key.englishTitle), // Anime title
-                    Image.network(entry.value), // Image URL
+                    AnimeSearchWidget(onSelect: (Anime selectedAnime) => _onSelect(anime, selectedAnime)),
+                    Text(anime.englishTitle), // Anime title
+                    Image.network(anime.getRandomImage()), // Image URL
                   ],
                 ),
               );

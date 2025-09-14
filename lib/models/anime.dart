@@ -43,4 +43,12 @@ class Anime {
     return imageList[Random().nextInt(imageList.length)];
   }
 
+  void addImages(List<String> animeList){
+    imageList.addAll(animeList);
+  }
+
+  void addImage(String img){
+    imageList.add(img);
+  }
+
 }

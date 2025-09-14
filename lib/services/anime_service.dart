@@ -65,11 +65,9 @@ class AnimeService {
 
   Future<Anime> getRandomAnime(int topRateLimit) async {
 
+    Random random = Random();
     Anime? result;
 
-    Random random = Random();
-
-    // guarantee the anime is valid
     while (result == null){
       int animeTopPosition = random.nextInt(200);
       final Map<String, dynamic> queryParams = {
@@ -88,38 +86,31 @@ class AnimeService {
     return result;
   }
 
-  Future<String> getAnimeRandomWebpImage(Anime anime) async {
-    
+  Future<void> pupulateAnimeImages(Anime anime) async {
     LtHttpResponse res = await client.get(
       endpoint:'v4/anime/${anime.id}/pictures'
     );
     if (res.statusCode != 200){
-      return '';
+      return;
     }
-
-    Random random = Random();
-
-    while (res.content['data'].length > 0){
-      int idx = random.nextInt(res.content['data'].length);
-      String img = res.content['data'][idx]['webp']['image_url'];
-      if (img != ''){
-        return img;
-      }
-      res.content['data'].removeAt(idx);
-    }
-    return '';
+    final animeData = res.content['data'];
+    List<String> imgList = animeData
+      .map((img) => img['webp']['image_url'] as String)
+      .whereType<String>()
+      .toList();
+    anime.addImages(imgList);
   }
-
-  Future<Map<Anime, String>> getRandomAnimesAndImages({required int animeCount, int dificulty = 1 }) async {
+  
+  Future<List<Anime>> getRandomAnimes({required int animeCount, int dificulty = 1 }) async {
     
-    Map<Anime, String> animesMap = {};
+    List<Anime> animeList = [];
 
     for (int i = 0; i < animeCount; i++){
       Anime curAnime = await getRandomAnime(200);
-      String curAnimeImg = await getAnimeRandomWebpImage(curAnime);
-      animesMap.addAll({curAnime:curAnimeImg});
+      await pupulateAnimeImages(curAnime);
+      animeList.add(curAnime);
     }
-    return animesMap;
+    return animeList;
   }
 
 }
