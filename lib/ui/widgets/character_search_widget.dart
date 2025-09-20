@@ -33,11 +33,7 @@ class _CharacterSearchWidgetState extends State<CharacterSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return DebouncedAutocomplete<Character>(
-      onSelect: (Character character) {
-        setState(() {
-          widget.onSelect(character);
-        });
-      }, 
+      onSelect: widget.onSelect,
       searchFunction: _search, 
       getDisplayStringForOption: (Character opt) => opt.name
     );

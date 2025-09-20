@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:latom/models/anime.dart';
 import 'package:latom/services/anime_service.dart';
 import 'package:latom/ui/widgets/anime_detail_card.dart';
+import 'package:latom/ui/widgets/loading_widget.dart';
 import 'package:latom/ui/widgets/lt_scaffold.dart';
 
 class TopAnimeScreen extends StatefulWidget {
@@ -66,15 +67,7 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
         itemCount: _items.isEmpty? 1 : _items.length,
         itemBuilder: (context, index){
           if (_items.isEmpty){
-            return Padding(
-              padding: EdgeInsets.all(16), 
-              child: Column(
-                children: [
-                  SizedBox(width:30, height: 30, child: CircularProgressIndicator()),
-                  Padding(padding: EdgeInsets.only(top: 12), child: Text("Loading..."),)
-                ]
-              )
-            );
+            return LoadingWidget();
           }
           return Column(
             children: [

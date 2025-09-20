@@ -28,50 +28,30 @@ class _CharacterDetailCardState extends State<CharacterDetailCard> {
   @override
   Widget build(BuildContext context) {
     return LtFutureBuilder(
-      future: getUpdatedCharacter(), 
-      builder: (Character? character) => Column(
-        children: [
-          Text(widget.character.id.toString())
-          ,SizedBox(height: 10)
-          ,Text(widget.character.name)
-          ,SizedBox(height: 10)
-          ,Image.network(widget.character.getRandomImage())
-          ,SizedBox(height: 20)
-          ,Text('Animes:', style: TextStyle(fontWeight: FontWeight.bold))
-          ,Expanded(
-            child: ListView.builder(
-              itemCount: character!.animeList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(top: 8), 
-                  child: AnimeDetailCard(anime: character.animeList[index])
-                );
-              } 
+      future: getUpdatedCharacter(),
+      builder: (Character? character) => SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(widget.character.id.toString()),
+            SizedBox(height: 10),
+            Text(widget.character.name),
+            SizedBox(height: 10),
+            Image.network(widget.character.getRandomImage()),
+            SizedBox(height: 20),
+            Text('Animes:', style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(height: 10),
+            ...character!.animeList.map((anime) => 
+              Padding(
+                padding: EdgeInsets.only(top: 8),
+                child: AnimeDetailCard(anime: anime),
+              )
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-      nullResponseMsg: 'AAAAAAAAAAAA'
+      nullResponseMsg: 'AAAAAAAAAAAA',
     );
   }
-
 }
-
-// Text(widget.character.animeList[index].englishTitle),
-//Column(
-//  children: [
-//    //AnimeDetailCard(anime: widget.character.animeList[index]),
-//    Text(widget.character.animeList[index].englishTitle),
-//    SizedBox(height: 8,)
-//  ],
-//),
-//children: [
-//  Text(widget.character.id.toString())
-//  ,SizedBox(height: 10)
-//  ,Text(widget.character.name)
-//  ,SizedBox(height: 10)
-//  ,Image.network(widget.character.getRandomImage())
-//  ,SizedBox(height: 20)
-//  ,Text('Animes:', style: TextStyle(fontWeight: FontWeight.bold))
-//  //Expanded(child: ListView(children: widget.character.animeList.map((Anime anime) =>  AnimeDetailCard(anime:anime)).toList(),))
-//],

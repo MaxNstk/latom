@@ -19,7 +19,7 @@ class _SearchCharacterScreenState extends State<SearchCharacterScreen> {
   @override
   Widget build(BuildContext context) {
     return LtScaffold(
-      title: 'ANIME SEARCH',
+      title: 'CHARACTER SEARCH',
       body: Column(
         children: [
           CharacterSearchWidget(

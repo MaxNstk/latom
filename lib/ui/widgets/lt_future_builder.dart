@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:latom/ui/widgets/loading_widget.dart';
 
 class LtFutureBuilder<T> extends StatelessWidget {
   
-  final Future<T?> future;
+  final Future<T?>? future;
   final Widget Function(T? data) builder; 
   final String nullResponseMsg;
   
@@ -10,7 +11,9 @@ class LtFutureBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    if (future == null) {
+      return LoadingWidget();
+    }
     return FutureBuilder<T?>(
       future: future, 
       builder: (context, AsyncSnapshot<T?> snapshot){
@@ -19,18 +22,10 @@ class LtFutureBuilder<T> extends StatelessWidget {
               return Center(child: Text(nullResponseMsg)); 
             }
           // BUILD THE LAYOUT
-          return builder(snapshot.data!);
+          return builder(snapshot.data);
         }
         if (snapshot.connectionState == ConnectionState.waiting){
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(width:30, height: 30, child: CircularProgressIndicator()),
-                Padding(padding: EdgeInsets.only(top: 12), child: Text("Loading..."),),
-              ],
-            )
-          );
+          return LoadingWidget();
         }
         if (snapshot.hasError){
           return Column(

@@ -48,8 +48,8 @@ class _GuessAnimeScreenState extends State<GuessAnimeScreen> {
                 child: Column(
                   children: [
                     AnimeSearchWidget(onSelect: (Anime selectedAnime) => _onSelect(anime, selectedAnime)),
-                    Text(anime.englishTitle), // Anime title
-                    Image.network(anime.getRandomImage()), // Image URL
+                    Text(anime.englishTitle),
+                    Image.network(anime.getRandomImage()),
                   ],
                 ),
               );
