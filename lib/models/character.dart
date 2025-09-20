@@ -16,6 +16,10 @@ class Character {
 
   Character({required this.id, required this.name, required this.popularity, required this.role});
 
+  bool isFrom(Anime anime){
+    return animeList.any((a) => a.id == anime.id);
+  }
+
   factory Character.fromJson(Map<String, dynamic> json){
     Character character =  Character(
         id: json['mal_id'],
