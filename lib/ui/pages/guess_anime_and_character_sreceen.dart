@@ -35,13 +35,13 @@ class _GuessAnimeScreenState extends State<GuessAnimeAndCharacterScreen> {
     
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(
-        _selectedCharacter == _correctCharacter? 'RIGHT CHARACTER' : 'WRONG CHARACTER'
+        _selectedCharacter!.id == _correctCharacter!.id ? 'RIGHT CHARACTER' : 'WRONG CHARACTER'
       ),)
     );
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(
-        _correctCharacter.isFrom(_selectedAnime!)? 'RIGHT ANIME' : 'WRONG ANIME'
+        _correctCharacter!.isFrom(_selectedAnime!) ? 'RIGHT ANIME' : 'WRONG ANIME'
       ),)
     );
   }

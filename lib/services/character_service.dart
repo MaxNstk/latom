@@ -93,6 +93,7 @@ class CharacterService {
       );
       if (res.statusCode == 200){
         result = Character.fromJson(res.content['data'][0]);
+        populateCharacterAnimes(result);
       }
     }
     return result;
