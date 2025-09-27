@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:latom/ui/pages/anime_by_id_screen.dart';
 import 'package:latom/ui/pages/guess_anime_and_character_sreceen.dart';
 import 'package:latom/ui/pages/guess_anime_screen.dart';
+import 'package:latom/ui/pages/preferences_screen.dart';
 import 'package:latom/ui/pages/search_anime_screen.dart';
 import 'package:latom/ui/pages/search_character_screen.dart';
 import 'package:latom/ui/pages/top_anime_screen.dart';
@@ -82,7 +83,6 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             ),
-            SizedBox(height: 32,),
             ElevatedButton(
               child: const Text('GUESS ANIME AND CHARACTER'),
               onPressed: (){
@@ -90,6 +90,18 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute<void>(
                     builder: (context) => GuessAnimeAndCharacterScreen(),
+                  )
+                );
+              }
+            ),
+            SizedBox(height: 32,),
+            ElevatedButton(
+              child: const Text('PREFERENCES'),
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (context) => PreferencesScreen(),
                   )
                 );
               }

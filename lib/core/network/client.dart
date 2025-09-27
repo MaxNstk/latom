@@ -6,11 +6,7 @@ class LTHtppClient {
 
   // https://docs.api.jikan.moe/#tag/anime
 
-  late Client client;
-
-  LTHtppClient(){
-    client = Client();
-  }
+  Client client = Client();
 
   Future<LtHttpResponse> get({required String endpoint, Map<String, dynamic>? queryParams}) async {
     Response res = await client.get(Uri.https("api.jikan.moe", endpoint, queryParams));
