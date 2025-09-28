@@ -58,7 +58,6 @@ class _GuessAnimeScreenState extends State<GuessAnimeAndCharacterScreen> {
     return LtScaffold(
       title: 'GUESS THE CHARACTER AND ANIME',
       body: LtFutureBuilder(
-        nullResponseMsg: 'Not Found',
         future: _characterFuture, 
         builder: (Character? character) {
           if (character == null) {

@@ -23,7 +23,7 @@ class _AppState extends State<App> {
           theme: prefs!.getThemeData(),
           home: const HomePage(title: 'LATOM'),
         );
-      }, nullResponseMsg: 'ERRRROO', 
+      },
     );
   }
 }

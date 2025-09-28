@@ -78,7 +78,6 @@ class AnimeByIdScreenState extends State<AnimeByIdScreen> {
                 LtFutureBuilder<Anime>(
                   builder: (Anime? anime) => AnimeDetailCard(anime: anime!),
                   future: AnimeService().getAnimeById(_submittedAnimeId!),
-                  nullResponseMsg: 'Anime not found',
                 )
             ],
           ),

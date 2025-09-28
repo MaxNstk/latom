@@ -36,7 +36,6 @@ class _GuessAnimeScreenState extends State<GuessAnimeScreen> {
     return LtScaffold(
       title: 'GUESS THE ANIME',
       body: LtFutureBuilder(
-        nullResponseMsg: 'Not Found',
         future: animeService.getRandomAnimes(animeCount: 3),
         builder: (List<Anime>? animeList) {
           return ListView.builder(

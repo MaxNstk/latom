@@ -5,9 +5,8 @@ class LtFutureBuilder<T> extends StatelessWidget {
   
   final Future<T?>? future;
   final Widget Function(T? data) builder; 
-  final String nullResponseMsg;
-  
-  const LtFutureBuilder({super.key, required this.future, required this.builder, required this.nullResponseMsg});
+
+  const LtFutureBuilder({super.key, required this.future, required this.builder});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +17,6 @@ class LtFutureBuilder<T> extends StatelessWidget {
       future: future, 
       builder: (context, AsyncSnapshot<T?> snapshot){
         if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.data == null){
-              return Center(child: Text(nullResponseMsg)); 
-            }
           // BUILD THE LAYOUT
           return builder(snapshot.data);
         }

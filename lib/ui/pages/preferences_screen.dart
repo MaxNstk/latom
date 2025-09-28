@@ -19,7 +19,6 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
   Widget build(BuildContext context) {
     return LtFutureBuilder(
       future: PreferencesManager.initPreferences(),
-      nullResponseMsg: 'Nothing to Show',
       builder: (PreferencesManager? prefs) {
         return LtScaffold(
           title: 'PREFERENCES',

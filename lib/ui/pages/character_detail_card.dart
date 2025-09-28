@@ -51,7 +51,6 @@ class _CharacterDetailCardState extends State<CharacterDetailCard> {
           ],
         ),
       ),
-      nullResponseMsg: 'AAAAAAAAAAAA',
     );
   }
 }
