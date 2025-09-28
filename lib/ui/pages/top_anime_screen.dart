@@ -67,7 +67,7 @@ class _TopAnimeScreenState extends State<TopAnimeScreen> {
         itemCount: _items.isEmpty? 1 : _items.length,
         itemBuilder: (context, index){
           if (_items.isEmpty){
-            return LoadingWidget();
+            return LtLoadingWidget();
           }
           return Column(
             children: [

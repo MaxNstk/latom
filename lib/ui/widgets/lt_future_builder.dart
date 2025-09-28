@@ -11,7 +11,7 @@ class LtFutureBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (future == null) {
-      return LoadingWidget();
+      return LtLoadingWidget();
     }
     return FutureBuilder<T?>(
       future: future, 
@@ -21,7 +21,7 @@ class LtFutureBuilder<T> extends StatelessWidget {
           return builder(snapshot.data);
         }
         if (snapshot.connectionState == ConnectionState.waiting){
-          return LoadingWidget();
+          return LtLoadingWidget();
         }
         if (snapshot.hasError){
           return Column(
