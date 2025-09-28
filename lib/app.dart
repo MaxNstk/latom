@@ -1,17 +1,29 @@
 
 import 'package:flutter/material.dart';
+import 'package:latom/core/preferences_manager.dart';
 import 'package:latom/ui/pages/home_screen.dart';
+import 'package:latom/ui/widgets/lt_future_builder.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData.light(),
-      home: const HomePage( title: 'LATOM'),
+    
+    return LtFutureBuilder(
+      future: PreferencesManager.initPreferences(),
+      builder: (PreferencesManager? prefs){
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: prefs!.getThemeData(),
+          home: const HomePage(title: 'LATOM'),
+        );
+      }, nullResponseMsg: 'ERRRROO', 
     );
   }
 }
